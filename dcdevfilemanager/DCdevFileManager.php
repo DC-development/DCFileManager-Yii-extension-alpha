@@ -1,5 +1,5 @@
 <?php
 
 /**
- * This obviously does nothing yet
+ * This obviously does nothing yet.
  */
