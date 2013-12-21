@@ -1,6 +1,13 @@
 ## DCFilemanager for Yii (alpha)
-### generates a Filebrowser using jsTree.
+### generates a filebrowser using jsTree.
 
+### This is alpha state 0.1a
+
+Up to now, we can display a nice file-tree with jsTree. 
+The contextmenu shouldnt be doin nothing, yet. 
+Beta release will be a basic filebrowser with rename-, move- delete- and create- function.
+
+### Usage
 An example usage would be:
 ```
 Yii::import('ext.dcfilemanager.DCFilemanager');
