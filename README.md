@@ -7,7 +7,8 @@ Up to now, we can display a nice file-tree with jsTree.
 The contextmenu shouldnt be doin nothing, yet. 
 Beta release will be a basic filebrowser with rename-, move- delete- and create- function.
 
-### Usage
+### Usage (for testing development)
+
 An example usage would be:
 ```
 Yii::import('ext.dcfilemanager.DCFilemanager');
