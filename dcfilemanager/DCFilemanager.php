@@ -13,7 +13,7 @@
  *  'headline' => 'Super Filebrowser Test',
  *  'containerId' => 'myTree',
  *  'theme' => 'default',
-'controller' => 'site'
+ *  'controller' => 'site'
  * ));
  *
  * And in your controller import the actions like this
