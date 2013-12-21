@@ -1,18 +1,12 @@
 <?php
 
 /**
- * Returns horoscope files from genrated as json list
+ * Returns json Object containing the contents of current dir requested
  */
 class DCGetFileList extends CAction {
 
     public function run($pathTofileListDirectory) {
-        $controller = $this->getController();
-
-        $fileListOfDirectory = array ();
-        $DirListOfDirectory = array ();
-        
-       // $pathTofileListDirectory = '../generatedFiles/DogsHoroscope/de/2038-01-01' ;
-
+       
         if(!is_dir($pathTofileListDirectory ))
         {
             die(" Invalid Directory");
@@ -22,10 +16,11 @@ class DCGetFileList extends CAction {
         {
             die("You don't have permission to read Directory");
         }
-        $i=0;
+
         /**
          * @Todo Bad way to build json vector
          */
+        $i=0;
         echo "[";
         foreach( new DirectoryIterator($pathTofileListDirectory) as $file) {
             $i++;
@@ -71,5 +66,4 @@ class DCGetFileList extends CAction {
         echo "{}";
         echo "]";
     }
-    //$this->render('getHoroscopeJson',array('fileListOfDirectory'=>$fileListOfDirectory, 'dirPath'=>$pathTofileListDirectory, 'DirListOfDirectory'=>$DirListOfDirectory));
 }
