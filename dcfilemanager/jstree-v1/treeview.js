@@ -1,13 +1,13 @@
 $(function () {
     //,"contextmenu"
     //,"dnd"
-    $("#tree").jstree({
+    $("#"+DCFilebrowser_containerId).jstree({
             // List of active plugins
             "plugins" : [
-                "themes","json_data","ui","crrm","search","types"
+                "themes","json_data","ui","crrm","search","types","contextmenu"
             ],
         "themes" : {
-            "theme" : "classic"
+            "theme" : DCFilebrowser_theme
             
         },
             // I usually configure the plugin that handles the data first
@@ -24,8 +24,8 @@ $(function () {
                     "data" : function (n) {
                         // the result is fed to the AJAX request `data` option
                         return {
-                            "r" : "service/getHoroscope",
-                            "pathTofileListDirectory" : n.attr ? n.attr("path") : '../generatedFiles'
+                            "r" : "service/DCGetFileList",
+                            "pathTofileListDirectory" : n.attr ? n.attr("path") : DCFilebrowser_rootDir
                             //"../generatedFiles/DogsHoroscope/de/2038-01-01"
                         };
                     }
@@ -244,9 +244,8 @@ $(function () {
                     type: "GET",
                     dataType : "html",
                     success: function( data ) {
-                        var $result = $(data).find('form');
-                       
-                        $('#showresults').replaceWith($('#showresults').html($result));
+
+                        $('#showresults').html(data);
     
                         tinymce.init({selector:'textarea' ,
                             height : '400px',
@@ -254,6 +253,7 @@ $(function () {
                             menubar: false
                         
                         });
+                        
                         $('form#horoscope-form').on('submit',function(e){
                             var $action =  $('form#horoscope-form').attr('action');
                             e.preventDefault();
@@ -272,7 +272,6 @@ $(function () {
                                 },
                                 success: function( data ) {
                                     var $result = $(data);
-                                    //alert ('saved!');
                                 }
                             });
                         });
@@ -289,41 +288,3 @@ $(function () {
         })
 
 });
-/**
-$(function () {
- 
-    $.jstree._themes = "http://ubuntuserver/symfony-test/web/bundles/dcfrontend/jstree-v1/themes/";
-
-    $("#tree").jstree({
-        "plugins" : [
-            "themes","json_data","ui","crrm","dnd","search","types","contextmenu"
-        ],
-        "themes" : {
-            "theme" : "default",
-            "dots" : false,
-            "icons" : false
-        },
-        "json_data" : {
-            "ajax" : {
-                "url" : "http://ubuntuserver/symfony-test/web/app_dev.php/member/parent",
-                "data" : function (n) {
-                    return {
-                        "operation" : "get_children",
-                        "id" : n.attr ? n.attr("id").replace("node_","") : 2
-                    };
-                }
-            }
-        },
-        // the UI plugin
-        "ui" : {
-            // selected onload
-            "initially_select" : [ "node_14" ]
-        },
-        // the core plugin
-        "core" : {
-            "initially_open" : [ "node_14" ],
-            "animation" : 1
-            }
-    });
-});
-    **/
