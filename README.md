@@ -10,7 +10,7 @@ Beta release will be a basic filebrowser with rename-, move- delete- and create-
 ### Usage (for testing/development)
 
 An example usage would be:
-```
+```php
 Yii::import('ext.dcfilemanager.DCFilemanager');
 
 $this->widget('DCFilemanager', array(
@@ -23,8 +23,7 @@ $this->widget('DCFilemanager', array(
 ```
 
 And in your controller import the actions like this
-
-```
+```php
 public function actions(){
  return array(
      'DCGetFileList'=>'application.extensions.dcfilemanager.DCGetFileList',
