@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Dcfilemanager-yii-extension-alpha by DC-development</title>
+    <title>DCFilemanager Alpha by DC-development</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -15,8 +15,8 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>Dcfilemanager-yii-extension-alpha</h1>
-        <p>DCFilemanager for Yii (alpha)</p>
+        <h1>DCFilemanager Alpha</h1>
+        <p>A filemanager-extension for Yii (alpha)</p>
 
         <p class="view"><a href="https://github.com/DC-development/DCFileManager-Yii-extension-alpha">View the Project on GitHub <small>DC-development/DCFileManager-Yii-extension-alpha</small></a></p>
 
@@ -29,6 +29,44 @@
       </header>
       <section>
         <p><img src="http://dc-development.de/wp-content/images/tree.jpg" alt="dev-screenshot"></p>
+
+<h2>
+<a name="dcfilemanager-for-yii-alpha" class="anchor" href="#dcfilemanager-for-yii-alpha"><span class="octicon octicon-link"></span></a>DCFilemanager for Yii (alpha)</h2>
+
+<h3>
+<a name="generates-a-filebrowser-using-jstree" class="anchor" href="#generates-a-filebrowser-using-jstree"><span class="octicon octicon-link"></span></a>generates a filebrowser using jsTree.</h3>
+
+<h3>
+<a name="this-is-alpha-state-01a" class="anchor" href="#this-is-alpha-state-01a"><span class="octicon octicon-link"></span></a>This is alpha state 0.1a</h3>
+
+<p>Up to now, we can display a nice file-tree with jsTree. 
+The contextmenu shouldnt be doin nothing, yet. 
+Beta release will be a basic filebrowser with rename-, move- delete- and create- function.</p>
+
+<h3>
+<a name="usage-for-testingdevelopment" class="anchor" href="#usage-for-testingdevelopment"><span class="octicon octicon-link"></span></a>Usage (for testing/development)</h3>
+
+<p>An example usage would be:</p>
+
+<div class="highlight highlight-php"><pre><span class="nx">Yii</span><span class="o">::</span><span class="na">import</span><span class="p">(</span><span class="s1">'ext.dcfilemanager.DCFilemanager'</span><span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">widget</span><span class="p">(</span><span class="s1">'DCFilemanager'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+ <span class="s1">'rootDir'</span> <span class="o">=&gt;</span> <span class="s1">'../generatedFiles'</span><span class="p">,</span>
+ <span class="s1">'headline'</span> <span class="o">=&gt;</span> <span class="s1">'Super Filebrowser Test'</span><span class="p">,</span>
+ <span class="s1">'containerId'</span> <span class="o">=&gt;</span> <span class="s1">'myTree'</span><span class="p">,</span>
+ <span class="s1">'theme'</span> <span class="o">=&gt;</span> <span class="s1">'default'</span><span class="p">,</span>
+ <span class="s1">'controller'</span> <span class="o">=&gt;</span> <span class="s1">'yourControllerName'</span>
+<span class="p">));</span>
+</pre></div>
+
+<p>And in your controller import the actions like this</p>
+
+<div class="highlight highlight-php"><pre><span class="k">public</span> <span class="k">function</span> <span class="nf">actions</span><span class="p">(){</span>
+ <span class="k">return</span> <span class="k">array</span><span class="p">(</span>
+     <span class="s1">'DCGetFileList'</span><span class="o">=&gt;</span><span class="s1">'application.extensions.dcfilemanager.DCGetFileList'</span><span class="p">,</span>
+ <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
 
 <h3>
 <a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
