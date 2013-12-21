@@ -18,7 +18,7 @@ class DCGetFileList extends CAction {
         }
 
         /**
-         * @Todo Bad way to build json vector
+         * @Todo Bad way to build json vector. Build a corresponding php-Object and then jsonEncode it.
          */
         $i=0;
         echo "[";
@@ -26,7 +26,7 @@ class DCGetFileList extends CAction {
             $i++;
             if ( $file->getBasename () !== '.DS_Store') {
                 if( $file->isFile() === TRUE && $file->getBasename() !=".htaccess" ) {
-                    // array_push ( $fileListOfDirectory, $file->getBasename () );                
+                                
                     echo "
                     {
                     \"attr\": { 
@@ -40,8 +40,7 @@ class DCGetFileList extends CAction {
                     \"state\":\"empty\"
                     },
                     ";
-                }else{
-                    // array_push ( $DirListOfDirectory, $file->getBasename () );
+                }else{  
                     if($file->getBasename()!="."&&$file->getBasename()!=".." && $file->getBasename() !=".htaccess"){
                         echo "
                         {
@@ -61,7 +60,7 @@ class DCGetFileList extends CAction {
             }
         }
         /**
-         * @Todo Even worse way to terminate json vector
+         * @Todo Even worse way to terminate json vector - Will be gone with solution above
          */
         echo "{}";
         echo "]";

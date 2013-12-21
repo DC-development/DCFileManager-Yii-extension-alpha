@@ -189,7 +189,6 @@ $(function () {
             );
         })
         .bind("select_node.jstree", function (e) {
-            //alert($.jstree._focused().get_selected().attr('path'));
             myPath = $.jstree._focused().get_selected().attr('path');
             mytype = $.jstree._focused().get_selected().attr('rel');
             if(mytype=="file"){
