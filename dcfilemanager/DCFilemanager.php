@@ -13,7 +13,7 @@
  *  'headline' => 'Super Filebrowser Test',
  *  'containerId' => 'myTree',
  *  'theme' => 'default',
- *  'controller' => 'yourControllerName'
+'controller' => 'site'
  * ));
  *
  * And in your controller import the actions like this
@@ -43,7 +43,7 @@ class DCFilemanager extends CWidget {
 	 * This method registers all needed client scripts and renders
 	 * the config script block and the container.
 	 */
-	public function run() 
+	public function run()
     {
         $m_output = CHtml::openTag('h2');
         $m_output .= $this->headline;
