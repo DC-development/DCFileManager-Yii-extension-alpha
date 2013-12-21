@@ -12,7 +12,8 @@
  *  'rootDir' => '../generatedFiles',
  *  'headline' => 'Super Filebrowser Test',
  *  'containerId' => 'myTree',
- *  'theme' => 'default'
+ *  'theme' => 'default',
+ *  'controller' => 'yourControllerName'
  * ));
  *
  * And in your controller import the actions like this
@@ -35,6 +36,7 @@ class DCFilemanager extends CWidget {
     public $headline;
     public $containerId;
     public $theme;
+    public $controller;
 
 	/**
 	 * Executes the widget.
@@ -54,7 +56,9 @@ class DCFilemanager extends CWidget {
         $m_output .= CHtml::openTag('script');
         $m_output .= "DCFilebrowser_rootDir = '$this->rootDir'; ";
         $m_output .= "DCFilebrowser_containerId = '$this->containerId'; ";
-        $m_output .= "DCFilebrowser_theme = '$this->theme'";
+        $m_output .= "DCFilebrowser_theme = '$this->theme'; ";
+        $m_output .= "DCFilebrowser_controller = '$this->controller'";
+        
         $m_output .= CHtml::closeTag('script');
 
         $m_output .= CHtml::openTag('div', array('id'=>$this->containerId));
