@@ -14,7 +14,7 @@ An example usage would be:
 Yii::import('ext.dcfilemanager.DCFilemanager');
 
 $this->widget('DCFilemanager', array(
- 'rootDir' => '../generatedFiles',
+ 'rootDir' => '../your/path',
  'headline' => 'Super Filebrowser Test',
  'containerId' => 'myTree',
  'theme' => 'default',
