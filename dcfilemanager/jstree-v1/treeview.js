@@ -4,7 +4,7 @@ $(function () {
     $("#"+DCFilebrowser_containerId).jstree({
             // List of active plugins
             "plugins" : [
-                "themes","json_data","ui","crrm","search","types","contextmenu"
+                "themes","json_data","ui","crrm","search","types","contextmenu","dnd"
             ],
         "themes" : {
             "theme" : DCFilebrowser_theme
@@ -70,21 +70,7 @@ $(function () {
                             "label"				: "Delete",
                             "action"			: function (obj) { if(this.is_selected(obj)) { this.remove(); } else { this.remove(obj); } }
                         },
-                        "myownentry" : {
-                            "separator_before"	: true,
-                            "icon"				: false,
-                            "separator_after"	: false,
-                            "label"				: "My own entry",
-                            "action"			: false,
-                            "submenu" : {
-                                "cut" : {
-                                    "separator_before"	: false,
-                                    "separator_after"	: false,
-                                    "label"				: "my submenu",
-                                    "action"			: function (obj) { this.cut(obj); }
-                                }
-                            }
-                        },
+                        
                         "ccp" : {
                             "separator_before"	: true,
                             "icon"				: false,
@@ -136,8 +122,9 @@ $(function () {
             }
         })
         .bind("create.jstree", function (e, data) {
+            
             $.post(
-                "tree/create", 
+                "index.php", 
                 {
                     "operation" : "create_node",
                     "id" : data.rslt.parent.attr("id").replace("node_",""),
@@ -146,8 +133,11 @@ $(function () {
                     "type" : data.rslt.obj.attr("rel")
                 },
                 function (r) {
+                    //checking out wether function is called
+                    alert('fired cerateFile');
                     if(r.status) {
                         $(data.rslt.obj).attr("id", "node_" + r.id);
+                        
                     }
                     else {
                         $.jstree.rollback(data.rlbk);
@@ -156,6 +146,8 @@ $(function () {
             );
         })
         .bind("remove.jstree", function (e, data) {
+            //checking out wether function is called
+            alert('fired deletedFile');
             data.rslt.obj.each(function () {
                 $.ajax({
                     async : false,
@@ -174,6 +166,8 @@ $(function () {
             });
         })
         .bind("rename.jstree", function (e, data) {
+            //checking out wether function is called
+            alert('fired renameFile');
             $.post(
                 "tree/update",
                 {
