@@ -65,7 +65,7 @@
 #jstree-marker.jstree-default { _background-image:url("d.gif"); }
 .jstree-default .jstree-open ins { _background-position:-72px 0; }
 .jstree-default .jstree-closed ins { _background-position:-54px 0; }
-.jstree-default .jstree-leaf ins { _background-position:-52px 0; }
+.jstree-default .jstree-leaf ins { _background-position:-36px 0; }
 .jstree-default a ins.jstree-icon { _background-position:-56px -19px; }
 #vakata-contextmenu.jstree-default-context ins { _display:none; }
 #vakata-contextmenu.jstree-default-context li { _zoom:1; }
@@ -73,9 +73,3 @@
 .jstree-default .jstree-checked a .jstree-checkbox { _background-position:-38px -19px; }
 .jstree-default .jstree-unchecked a .jstree-checkbox { _background-position:-2px -19px; }
 /* IE6 END */
-
-/* 
-Todo: Need to move this somewhere it works with all themes ! - this is only going for default !
-This for showing file icon on leaf objects (wich is probably correct in file-dirs) 
-*/
-.jstree-leaf a .jstree-icon { background-image:url("file.png"); background-repeat:no-repeat; background-color:transparent; background-position:0px 0;  }

@@ -1,0 +1,11 @@
+/* 
+This for showing file icon on leaf objects (wich is probably correct in file-dirs) 
+*/
+.jstree-apple li.jstree-leaf a .jstree-icon,
+.jstree-classic li.jstree-leaf a .jstree-icon,
+.jstree-default li.jstree-leaf a .jstree-icon,
+.jstree-default-rtl li.jstree-leaf a .jstree-icon { 
+    background-image:url("../images/file.png"); 
+    background-repeat:no-repeat; 
+    background-position:center;  
+}

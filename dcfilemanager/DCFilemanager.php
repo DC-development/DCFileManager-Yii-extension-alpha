@@ -79,9 +79,11 @@ class DCFilemanager extends CWidget {
     {
         $cs = Yii::app()->getClientScript();
         $cs->registerCoreScript('jquery');
-        $asset_url = Yii::app()->assetManager->publish(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'jstree-v1', false, -1, true);
-        $cs->registerScriptFile("$asset_url/jquery.jstree.js", CClientScript::POS_END);
-        $cs->registerScriptFile("$asset_url/treeview.js", CClientScript::POS_END);
+        $asset_url = Yii::app()->assetManager->publish(dirname(__FILE__) . DIRECTORY_SEPARATOR . '', false, -1, true);
+        
+        $cs->registerCssFile("$asset_url/css/dcfilemanager.css");
+        $cs->registerScriptFile("$asset_url/jstree-v1/jquery.jstree.js", CClientScript::POS_END);
+        $cs->registerScriptFile("$asset_url/jstree-v1/treeview.js", CClientScript::POS_END);
     }
     
   
