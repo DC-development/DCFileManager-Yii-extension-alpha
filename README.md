@@ -28,7 +28,10 @@ And in your controller import the actions like this
 ```php
 public function actions(){
  return array(
-     'DCGetFileList'=>'application.extensions.dcfilemanager.DCGetFileList',
+     'DCGetFileList'=>'application.extensions.dcfilemanager.actions.DCGetFileList',
+     'DCCreateFile'=>'application.extensions.dcfilemanager.actions.DCCreateFile',
+     'DCRenameFile'=>'application.extensions.dcfilemanager.actions.DCRenameFile',
+     'DCDeleteFile'=>'application.extensions.dcfilemanager.actions.DCDeleteFile'
  );
 }
 ```
