@@ -1,7 +1,7 @@
 ## DCFilemanager for Yii (alpha)
 ### generates a filebrowser using jsTree.
 
-### This is alpha state 0.1a
+### This is alpha state 0.2a
 
 It is currently under heavy development and we may introduce significant changes without prior notices.
  

@@ -25,7 +25,7 @@
  * }
  * 
  * @author Philipp Sengelmann <p.sengelmann@bitforce-it.de>
- * @version 0.1a
+ * @version 0.2a
  * @link http://dc-development.de
  * @copyright Copyright &copy; 2013 Philipp Sengelmann
  * @license http://www.opensource.org/licenses/mit-license.php
