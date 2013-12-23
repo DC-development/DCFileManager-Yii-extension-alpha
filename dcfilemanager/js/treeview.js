@@ -112,13 +112,13 @@ $(function () {
             // the UI plugin - it handles selecting/deselecting/hovering nodes
             "ui" : {
                 // this makes the node with ID node_4 selected onload
-                "initially_select" : [ "node_4" ]
+                "initially_select" : [ "item_4" ]
             },
             // the core plugin - not many options here
             "core" : {
                 // just open those two nodes up
                 // as this is an AJAX enabled tree, both will be downloaded from the server
-                "initially_open" : [ "node_2" , "node_3" ]
+                "initially_open" : [ "item_2" , "item_3" ]
             }
         })
         .bind("create.jstree", function (e, data) {
@@ -127,7 +127,7 @@ $(function () {
                 "index.php", 
                 {
                     "operation" : "create_node",
-                    "id" : data.rslt.parent.attr("id").replace("node_",""),
+                    "id" : data.rslt.parent.attr("id").replace("item_",""),
                     "position" : data.rslt.position,
                     "title" : data.rslt.name,
                     "type" : data.rslt.obj.attr("rel")
@@ -136,7 +136,7 @@ $(function () {
                     //checking out wether function is called
                     alert('fired cerateFile');
                     if(r.status) {
-                        $(data.rslt.obj).attr("id", "node_" + r.id);
+                        $(data.rslt.obj).attr("id", "item_" + r.id);
                         
                     }
                     else {
@@ -146,25 +146,27 @@ $(function () {
             );
         })
         .bind("remove.jstree", function (e, data) {
-            //checking out wether function is called
-            alert('fired deletedFile');
+           
             data.rslt.obj.each(function () {
                 $.ajax({
                     async : false,
-                    type: 'POST',
-                    url: "./server.php",
+                    type: 'GET',
+                    url: "index.php",
                     data : {
-                        "operation" : "remove_node",
-                        "id" : this.id.replace("node_","")
+                        "r" :  DCFilebrowser_controller+"/DCDeleteFile",
+                        "pathToFile" : this.id.replace("item_","")
                     },
                     success : function (r) {
+                        //checking out wether function is called
+                        console.debug(data);
                         if(!r.status) {
                             data.inst.refresh();
-                        }
+                        }  
                     }
                 });
             });
         })
+        
         .bind("rename.jstree", function (e, data) {
             //checking out wether function is called
             alert('fired renameFile');
@@ -172,7 +174,7 @@ $(function () {
                 "tree/update",
                 {
                     "operation" : "rename_node",
-                    "id" : data.rslt.obj.attr("id").replace("node_",""),
+                    "id" : data.rslt.obj.attr("id").replace("item_",""),
                     "title" : data.rslt.new_name
                 },
                 function (r) {
