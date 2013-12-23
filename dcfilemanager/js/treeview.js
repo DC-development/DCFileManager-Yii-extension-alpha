@@ -131,9 +131,6 @@ $(function () {
                         "filename" : data.rslt.name
                     },
                     success : function (result , r) {
-                        //checking out wether function is called
-                        var text = result;
-                        console.debug(text);
                         if(!r) {
                             data.inst.refresh();
                         }
@@ -153,9 +150,6 @@ $(function () {
                         "pathToFile" : this.id.replace("item_","")
                     },
                     success : function (result , r) {
-                        //checking out wether function is called
-                        var text = result;
-                        console.debug(text);
                         if(!r) {
                             data.inst.refresh();
                         }
@@ -165,8 +159,6 @@ $(function () {
             });
         })
         .bind("rename.jstree", function (e, data) {
-            //checking out wether function is called
-            //alert('fired renameFile');
             $.get(
                 "index.php?r="+DCFilebrowser_controller+"/DCRenameFile",
                 {
@@ -174,10 +166,10 @@ $(function () {
                     "newname" : data.rslt.new_name
                 },
                 function (result, r) {
-                    $('#showresults').html(result);
                     if(!r) {
                         $.jstree.rollback(data.rlbk);
                     }
+                    $('#showresults').html(result);
                 }
             );
         })
