@@ -7,6 +7,7 @@ class DCCreateFile extends CAction {
 
     public function run($pathToDir, $filename) {
         $result = "fired createFile $pathToDir/$filename";
+        print $result;
         return $result;
     }
 }
