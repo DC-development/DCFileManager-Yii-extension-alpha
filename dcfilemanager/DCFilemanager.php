@@ -83,7 +83,7 @@ class DCFilemanager extends CWidget {
         
         $cs->registerCssFile("$asset_url/css/dcfilemanager.css");
         $cs->registerScriptFile("$asset_url/jstree-v1/jquery.jstree.js", CClientScript::POS_END);
-        $cs->registerScriptFile("$asset_url/jstree-v1/treeview.js", CClientScript::POS_END);
+        $cs->registerScriptFile("$asset_url/js/treeview.js", CClientScript::POS_END);
     }
     
   

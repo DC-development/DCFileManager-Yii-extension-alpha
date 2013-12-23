@@ -183,6 +183,10 @@ $(function () {
             );
         })
         .bind("select_node.jstree", function (e) {
+            /**
+             * This is copied over from a differnet project - wont work ! - uses tinyMCE wich 
+             * will be made available but is not going to be integrated like this, to avoid dependencies. 
+             */
             myPath = $.jstree._focused().get_selected().attr('path');
             mytype = $.jstree._focused().get_selected().attr('rel');
             if(mytype=="file"){
