@@ -6,7 +6,7 @@
 class DCGetFileList extends CAction {
 
     public function run($pathTofileListDirectory) {
-       
+
         if(!is_dir($pathTofileListDirectory ))
         {
             die(" Invalid Directory");
@@ -24,39 +24,39 @@ class DCGetFileList extends CAction {
         echo "[";
         foreach( new DirectoryIterator($pathTofileListDirectory) as $file) {
             $i++;
-            if ( $file->getBasename () !== '.DS_Store') {
-                if( $file->isFile() === TRUE && $file->getBasename() !=".htaccess" ) {
-                                
-                    echo "
+            if($file->isFile() === FALSE && $file->getBasename()!='.'&& $file->getBasename()!='..') {
+                echo "
                     {
                     \"attr\": { 
                         \"id\" : \"folder_".$i."\", 
                         \"path\" : \"".$pathTofileListDirectory."/".$file->getBasename()."\",
-                        \"rel\" : \"file\",
+                        \"rel\" : \"folder\",
                         \"page_id\" : \"".$i."\"
                         }, 
                     \"data\" : \"".$file->getBasename()."\",
                     \"csscl\":\"ui-state-error\",
-                    \"state\":\"empty\"
+                    \"state\":\"closed\"
                     },
                     ";
-                }else{  
-                    if($file->getBasename()!="."&&$file->getBasename()!=".." && $file->getBasename() !=".htaccess"){
-                        echo "
-                        {
-                        \"attr\": { 
-                            \"id\" : \"item_".$i."\", 
-                            \"path\" : \"".$pathTofileListDirectory."/".$file->getBasename()."\",
-                            \"rel\" : \"folder\",
-                            \"page_id\" : \"".$i."\" 
-                                }, 
-                        \"data\" : \"".$file->getBasename()."\",
-                        \"csscl\":\"ui-state-error\",
-                        \"state\":\"closed\"
-                        },
-                        ";
-                    }
-                }
+            }
+        }
+        $i=0;
+        foreach( new DirectoryIterator($pathTofileListDirectory) as $file) {
+            $i++;
+            if( $file->isFile() === TRUE ) {
+                echo "
+                     {
+                     \"attr\": { 
+                     \"id\" : \"file_".$i."\", 
+                     \"path\" : \"".$pathTofileListDirectory."/".$file->getBasename()."\",
+                     \"rel\" : \"file\",
+                     \"page_id\" : \"".$i."\" 
+                     }, 
+                     \"data\" : \"".$file->getBasename()."\",
+                     \"csscl\":\"ui-state-error\",
+                     \"state\":\"empty\"
+                     },
+                     ";
             }
         }
         /**
