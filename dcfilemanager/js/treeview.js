@@ -25,7 +25,6 @@ $(function () {
                     return {
                         "r" : DCFilebrowser_controller+"/DCGetFileList",
                         "pathTofileListDirectory" : n.attr ? n.attr("path") : DCFilebrowser_rootDir
-                        //"../generatedFiles/DogsHoroscope/de/2038-01-01"
                     };
                 }
             }
@@ -173,19 +172,23 @@ $(function () {
                 }
             );
         })
+        /*
+         *
+         * This is copied over from a differnet project - wont work ! - uses tinyMCE wich
+         * will be made available but is not going to be integrated like this, to avoid dependencies.
+         *
+         * 
+        
         .bind("select_node.jstree", function (e) {
-            /**
-             * This is copied over from a differnet project - wont work ! - uses tinyMCE wich
-             * will be made available but is not going to be integrated like this, to avoid dependencies.
-             */
+            
             myPath = $.jstree._focused().get_selected().attr('path');
-            mytype = $.jstree._focused().get_selected().attr('rel');
-            if(mytype=="file"){
+            myType = $.jstree._focused().get_selected().attr('rel');
+            if(myType=="file"){
                 $.ajax({
                     url: "index.php",
                     data: {
-                        r: 'service/editHoroscope',
-                        horoscopePath: myPath
+                        r: DCFilebrowser_controller+"/DCEditFile",
+                        filePath: myPath
                     },
                     type: "GET",
                     dataType : "html",
@@ -200,20 +203,16 @@ $(function () {
 
                         });
 
-                        $('form#horoscope-form').on('submit',function(e){
-                            var $action =  $('form#horoscope-form').attr('action');
+                        $('form#EditorForm').on('submit',function(e){
+                            var $action =  $('form#EditorForm').attr('action');
                             e.preventDefault();
                             $.ajax({
                                 url: $action,
                                 type: "POST",
                                 data :{
-                                    HoroscopeForm : {
-                                        body : $('#HoroscopeForm_body').val(),
-                                        androidApp : $('#HoroscopeForm_androidApp').val(),
-                                        date : $('#HoroscopeForm_date').val(),
-                                        lang: $('#HoroscopeForm_lang').val(),
-                                        expdate : $('#HoroscopeForm_expdate').val(),
-                                        sign : $('#HoroscopeForm_sign').val()
+                                    EditorForm : {
+                                        body : $('#EditorForm_body').val(),
+                                        filename : $('#EditorForm_filename').val() 
                                     }
                                 },
                                 success: function( data ) {
@@ -231,6 +230,5 @@ $(function () {
                     }
                 });
             }
-        })
-
+        }) */
 });
