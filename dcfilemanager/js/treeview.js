@@ -1,16 +1,25 @@
 $(function () {
     //,"contextmenu"
     //,"dnd"
-    $("#"+DCFilebrowser_containerId).jstree({
+    
+
+    $("#"+DCFilebrowser_containerId)
+        .bind("before.jstree", function (e, data) {
+            $("#alog").append(data.func + "\n");
+        })
+        .jstree({
         // List of active plugins
         "plugins" : [
-            "themes","json_data","ui","crrm","search","types","contextmenu"
+            "themes","json_data","ui","crrm","dnd","types","contextmenu"
         ],
         "themes" : {
             "theme" : DCFilebrowser_theme
         },
         // I usually configure the plugin that handles the data first
         // This example uses JSON as it is most common
+            /**
+             * Todo: For some reason this wont stop firing if folder is empty (look at jsTree documentation)
+             */
         "json_data" : {
             // This tree is ajax enabled - as this is most common, and maybe a bit more complex
             // All the options are almost the same as jQuery's AJAX (read the docs)
@@ -140,6 +149,8 @@ $(function () {
         })
         .bind("remove.jstree", function (e, data) {
             data.rslt.obj.each(function () {
+                prompt("really wanna delete this ?");
+                pro
                 $.ajax({
                     async : false,
                     type: 'GET',

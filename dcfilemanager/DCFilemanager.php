@@ -57,14 +57,17 @@ class DCFilemanager extends CWidget {
         $m_output .= "DCFilebrowser_rootDir = '$this->rootDir'; ";
         $m_output .= "DCFilebrowser_containerId = '$this->containerId'; ";
         $m_output .= "DCFilebrowser_theme = '$this->theme'; ";
-        $m_output .= "DCFilebrowser_controller = '$this->controller'";
-        
+        $m_output .= "DCFilebrowser_controller = '$this->controller'";        
         $m_output .= CHtml::closeTag('script');
 
         $m_output .= CHtml::openTag('div', array('id'=>$this->containerId));
 
         $m_output .= CHtml::closeTag('div');
 
+        $m_output .= CHtml::openTag('textarea', array('id'=>'alog'));
+        $m_output .= $this->rootDir;
+        $m_output .= CHtml::closeTag('textarea');
+        
         $this->registerClientScript();
 
         echo $m_output;
