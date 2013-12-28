@@ -146,7 +146,7 @@ $(function () {
                     url: "index.php",
                     data : {
                         "r" :  DCFilebrowser_controller+"/DCDeleteFile",
-                        "pathToFile" : this.id.replace("item_","")
+                        "pathToFile" : data.rslt.obj.attr("path")
                     },
                     success : function (result , r) {
                         if(!r) {
