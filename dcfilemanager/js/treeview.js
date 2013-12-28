@@ -4,7 +4,7 @@ $(function () {
     $("#"+DCFilebrowser_containerId).jstree({
         // List of active plugins
         "plugins" : [
-            "themes","json_data","ui","crrm","search","types","contextmenu","dnd"
+            "themes","json_data","ui","crrm","search","types","contextmenu"
         ],
         "themes" : {
             "theme" : DCFilebrowser_theme
