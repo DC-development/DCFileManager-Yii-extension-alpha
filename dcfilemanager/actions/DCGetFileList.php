@@ -23,39 +23,35 @@ class DCGetFileList extends CAction {
         foreach( new DirectoryIterator($pathTofileListDirectory) as $file) {
             $i++;
             if($file->isFile() === FALSE && $file->getBasename()!='.'&& $file->getBasename()!='..') {
-                array_push($fileListArray, array(
-                    'attr' => array(
-                        'id' => "folder_".$i, 
-                        'path' => $pathTofileListDirectory.$file->getBasename()."/",
-                        'rel' => "folder",
-                        'page_id' => $i,
-                        'parent' => $file->getPath()
-                    ),
-                    'data' => $file->getBasename(),
-                    'csscl' => "ui-state-error",
-                    'state' => "closed"
-                ));
+                $fileListArray = $this->buildFileList($fileListArray, $pathTofileListDirectory, $file, $i, "folder", "closed");
+                
             };
         }
         $i=0;
         foreach( new DirectoryIterator($pathTofileListDirectory) as $file) {
             $i++;
             if( $file->isFile() === TRUE ) {
-                array_push($fileListArray, array(
-                    'attr' => array(
-                        'id' => "file_".$i."",
-                        'path' => $pathTofileListDirectory.$file->getBasename()."/",
-                        'rel' => "file",
-                        'page_id' => $i,
-                        'parent' => $file->getPath()
-                    ),
-                    'data' => $file->getBasename(),
-                    'csscl' => "ui-state-error",
-                    'state' => "empty"
-                ));
+                $fileListArray = $this->buildFileList($fileListArray, $pathTofileListDirectory, $file, $i, "file", "empty");
             };
         }
         
         echo json_encode($fileListArray);
+    }
+    
+    private function buildFileList($fileListArray, $pathTofileListDirectory, $file, $i, $type, $state)
+    {
+        array_push($fileListArray, array(
+            'attr' => array(
+                'id' => "$type".$i."",
+                'path' => $pathTofileListDirectory.$file->getBasename()."/",
+                'rel' => "$type",
+                'page_id' => $i,
+                'parent' => $file->getPath()
+            ),
+            'data' => $file->getBasename(),
+            'csscl' => "ui-state-error",
+            'state' => $state
+        ));
+        return $fileListArray;
     }
 }
