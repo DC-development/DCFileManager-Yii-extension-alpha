@@ -17,28 +17,25 @@ class DCGetFileList extends CAction {
             die("You don't have permission to read Directory");
         }
 
-        /**
-         * @Todo Bad way to build json vector. Build a corresponding php-Object and then jsonEncode it.
-         */
         $i=0;
         $fileListArray = array();
         
-      //  echo "[";
         foreach( new DirectoryIterator($pathTofileListDirectory) as $file) {
             $i++;
             if($file->isFile() === FALSE && $file->getBasename()!='.'&& $file->getBasename()!='..') {
                 array_push($fileListArray, array(
                     'attr' => array(
                         'id' => "folder_".$i, 
-                        'path' => $pathTofileListDirectory."/".$file->getBasename()."/",
+                        'path' => $pathTofileListDirectory.$file->getBasename()."/",
                         'rel' => "folder",
-                        'page_id' => $i
+                        'page_id' => $i,
+                        'parent' => $file->getPath()
                     ),
-                    'data' => $file->getBasename()."",
+                    'data' => $file->getBasename(),
                     'csscl' => "ui-state-error",
                     'state' => "closed"
                 ));
-            }
+            };
         }
         $i=0;
         foreach( new DirectoryIterator($pathTofileListDirectory) as $file) {
@@ -47,15 +44,16 @@ class DCGetFileList extends CAction {
                 array_push($fileListArray, array(
                     'attr' => array(
                         'id' => "file_".$i."",
-                        'path' => $pathTofileListDirectory."/".$file->getBasename()."/",
+                        'path' => $pathTofileListDirectory.$file->getBasename()."/",
                         'rel' => "file",
-                        'page_id' => $i
+                        'page_id' => $i,
+                        'parent' => $file->getPath()
                     ),
-                    'data' => $file->getBasename()."",
+                    'data' => $file->getBasename(),
                     'csscl' => "ui-state-error",
                     'state' => "empty"
                 ));
-            }
+            };
         }
         
         echo json_encode($fileListArray);
