@@ -135,7 +135,7 @@ $(function () {
                     url: "index.php",
                     data : {
                         "r" :  DCFilebrowser_controller+"/DCCreateFile",
-                        "pathToDir" : 'path to dir',
+                        "pathToDir" : data.rslt.obj.parents("li").attr('path'),
                         "filename" : data.rslt.name
                     },
                     success : function (result , r) {
