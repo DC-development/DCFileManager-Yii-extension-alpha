@@ -21,48 +21,43 @@ class DCGetFileList extends CAction {
          * @Todo Bad way to build json vector. Build a corresponding php-Object and then jsonEncode it.
          */
         $i=0;
-        echo "[";
+        $fileListArray = array();
+        
+      //  echo "[";
         foreach( new DirectoryIterator($pathTofileListDirectory) as $file) {
             $i++;
             if($file->isFile() === FALSE && $file->getBasename()!='.'&& $file->getBasename()!='..') {
-                echo "
-                    {
-                    \"attr\": { 
-                        \"id\" : \"folder_".$i."\", 
-                        \"path\" : \"".$pathTofileListDirectory."/".$file->getBasename()."\",
-                        \"rel\" : \"folder\",
-                        \"page_id\" : \"".$i."\"
-                        }, 
-                    \"data\" : \"".$file->getBasename()."\",
-                    \"csscl\":\"ui-state-error\",
-                    \"state\":\"closed\"
-                    },
-                    ";
+                array_push($fileListArray, array(
+                    'attr' => array(
+                        'id' => "folder_".$i, 
+                        'path' => $pathTofileListDirectory."/".$file->getBasename()."/",
+                        'rel' => "folder",
+                        'page_id' => $i
+                    ),
+                    'data' => $file->getBasename()."",
+                    'csscl' => "ui-state-error",
+                    'state' => "closed"
+                ));
             }
         }
         $i=0;
         foreach( new DirectoryIterator($pathTofileListDirectory) as $file) {
             $i++;
             if( $file->isFile() === TRUE ) {
-                echo "
-                     {
-                     \"attr\": { 
-                     \"id\" : \"file_".$i."\", 
-                     \"path\" : \"".$pathTofileListDirectory."/".$file->getBasename()."\",
-                     \"rel\" : \"file\",
-                     \"page_id\" : \"".$i."\" 
-                     }, 
-                     \"data\" : \"".$file->getBasename()."\",
-                     \"csscl\":\"ui-state-error\",
-                     \"state\":\"empty\"
-                     },
-                     ";
+                array_push($fileListArray, array(
+                    'attr' => array(
+                        'id' => "file_".$i."",
+                        'path' => $pathTofileListDirectory."/".$file->getBasename()."/",
+                        'rel' => "file",
+                        'page_id' => $i
+                    ),
+                    'data' => $file->getBasename()."",
+                    'csscl' => "ui-state-error",
+                    'state' => "empty"
+                ));
             }
         }
-        /**
-         * @Todo Even worse way to terminate json vector - Will be gone with solution above
-         */
-        echo "{}";
-        echo "]";
+        
+        echo json_encode($fileListArray);
     }
 }
