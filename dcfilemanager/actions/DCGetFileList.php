@@ -5,7 +5,11 @@
  */
 class DCGetFileList extends CAction {
 
-    public function run($pathTofileListDirectory) {
+    /**
+     * @param $pathTofileListDirectory
+     */
+    public function run($pathTofileListDirectory) 
+    {
 
         if(!is_dir($pathTofileListDirectory ))
         {
@@ -37,7 +41,16 @@ class DCGetFileList extends CAction {
         
         echo json_encode($fileListArray);
     }
-    
+
+    /**
+     * @param $fileListArray
+     * @param $pathTofileListDirectory
+     * @param $file
+     * @param $i
+     * @param $type
+     * @param $state
+     * @return mixed
+     */
     private function buildFileList($fileListArray, $pathTofileListDirectory, $file, $i, $type, $state)
     {
         array_push($fileListArray, array(
