@@ -1,0 +1,3 @@
+[submodule "dcfilemanager/utils/phpfilemanager"]
+	path = dcfilemanager/utils/phpfilemanager
+	url = https://github.com/DC-development/PHP_FILEMANAGER_CLASS.git
